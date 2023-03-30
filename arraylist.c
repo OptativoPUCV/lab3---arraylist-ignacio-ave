@@ -40,7 +40,6 @@ realloc así: data = realloc(data, nueva_capacidad)
     Recuerde aumentar el valor de la variable size.
 
 */
-*/
 void doblarcapacity(ArrayList *l) {
   l->data = realloc(l->data, sizeof(void *) * 2 * l->capacity);
   if (l->data == NULL)
