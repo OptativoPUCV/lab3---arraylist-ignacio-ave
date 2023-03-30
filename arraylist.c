@@ -100,7 +100,22 @@ get).
 a la derecha, una casilla hacia la izquierda
 
 */
-void *pop(ArrayList *l, int i) { return NULL; }
+void *pop(ArrayList *l, int i) {
+  if (i > l->size)
+    return NULL;
+  if (i == l->size) {
+    l->data[l->size] = NULL;
+    return NULL;
+  }
+
+  l->data[i] = NULL;
+  int resto = l->size - i;
+  for (int j = 0; j < resto; j++) {
+    l->data[i + j] = l->data[i + j + 1];
+  }
+
+  return l->data[i];
+}
 
 /*Implemente la función void* get(ArrayList * l, int i). Esta función retorna el
  * dato de la posición i de la lista. Si i>=size, entonces retorna NULL. Además,
