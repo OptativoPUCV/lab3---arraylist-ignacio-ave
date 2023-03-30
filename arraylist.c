@@ -67,26 +67,25 @@ ingresa el dato en la i-ésima posición de la lista (i=0 es la primera posició
     Si i es mayor a size, la función no debe hacer nada.
 
 */
-void push(ArrayList *l, void *data, int i) {
-  if (l->size == l->capacity)
-    doblarcapacity(l);
+void *pop(ArrayList *l, int i) {
   if (i > l->size)
-    return;
+    return NULL;
+
+  void *valor_eleminado = l->data[i];
+
   if (i == l->size) {
-    append(l, data);
-    return;
+    l->data[l->size] = NULL;
+    l->size--;
+    return valor_eleminado;
   }
 
-    // si es que i < l->size
-  void *aux1 = NULL;
-  int resto = l->size - i ;
-  for(int k = 0 ; k  < resto ; k++){
-    aux1 = l->data[i+k];
-    l->data[i+k] = data;
-    data = aux1;
+  l->data[i] = NULL;
+  int resto = l->size - i;
+  for (int j = 0; j < resto; j++) {
+    l->data[i + j] = l->data[i + j + 1];
   }
-
-  
+  l->size--;
+  return valor_eleminado;
 }
 
 /*
