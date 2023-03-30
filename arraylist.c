@@ -22,7 +22,14 @@ es de 2 casillas para el arreglo.
     Recuerde reservar memoria para el ArrayList y también para el arreglo
 dinámico data.
 */
-ArrayList *createList(void) { return NULL; }
+ArrayList *createList(void) {
+  ArrayList *nuevo = (ArrayList *)malloc(sizeof(ArrayList));
+  nuevo->data = (void **)malloc(sizeof(void *) * 2);
+  nuevo->capacity = 2;
+  nuevo->size = 0;
+
+  return nuevo;
+}
 /*
 Implemente la función void append(ArrayList * l, void * data). Esta función
 agrega el dato al final de la lista (es decir, en la posición size).
