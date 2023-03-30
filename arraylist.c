@@ -25,9 +25,14 @@ dinámico data.
 ArrayList *createList(void) {
   ArrayList *nuevo = (ArrayList *)malloc(sizeof(ArrayList));
   nuevo->data = (void **)malloc(sizeof(void *) * 2);
+    
+  if (nuevo == NULL || nuevo->data == NULL)
+    exit(1);
+
   nuevo->capacity = 2;
   nuevo->size = 0;
 
+  
   return nuevo;
 }
 /*
@@ -125,10 +130,20 @@ void *pop(ArrayList *l, int i) {
  * si i<0 los valores son obtenidos desde el final hacia el principio de la
  * lista.
  */
-void *get(ArrayList *l, int i) { return NULL; }
+void *get(ArrayList *l, int i) {
+  if (i < 0)
+    i = l->size + i;
 
-int get_size(ArrayList *l) { return l->size; }
+  if (i >= size)
+    return NULL;
 
+  return l->data[i];
+}
+
+int get_size(ArrayList *l) {   
+  return l->size; 
+
+}
 /*
 
     Implemente la función void clean(ArrayList * list). Esta función inicializa
@@ -136,4 +151,13 @@ int get_size(ArrayList *l) { return l->size; }
    data a su tamaño inicial (2).
 
 */
-void clean(ArrayList *l) {}
+void clean(ArrayList *l) {
+  free(l->data);
+  l->data = (void **)malloc(sizeof(void *) * 2);
+  l->capacity = 2;
+  l->size = 0;
+
+  if (l == NULL || l->data == NULL)
+    exit(1);
+
+}
