@@ -67,6 +67,38 @@ ingresa el dato en la i-ésima posición de la lista (i=0 es la primera posició
     Si i es mayor a size, la función no debe hacer nada.
 
 */
+void push(ArrayList *l, void *data, int i) {
+  if (l->size == l->capacity)
+    doblarcapacity(l);
+  if (i > l->size)
+    return;
+  if (i == l->size) {
+    append(l, data);
+    return;
+  }
+
+    // si es que i < l->size
+  void *aux1 = NULL;
+  int resto = l->size - i ;
+  for(int k = 0 ; k  < resto ; k++){
+    aux1 = l->data[i+k];
+    l->data[i+k] = data;
+    data = aux1;
+  }
+
+}
+
+/*
+
+Implemente la función void* pop(ArrayList * l, int i). Esta función elimina y
+retorna el dato de la posición i de la lista. Valores negativos corresponden a
+los datos obtenidos desde el final al principio de la lista (vea la función
+get).
+
+    Recuerde que al eliminar un dato, debe mover los elementos que se encuentran
+a la derecha, una casilla hacia la izquierda
+
+*/
 void *pop(ArrayList *l, int i) {
   if (i > l->size)
     return NULL;
@@ -86,34 +118,6 @@ void *pop(ArrayList *l, int i) {
   }
   l->size--;
   return valor_eleminado;
-}
-
-/*
-
-Implemente la función void* pop(ArrayList * l, int i). Esta función elimina y
-retorna el dato de la posición i de la lista. Valores negativos corresponden a
-los datos obtenidos desde el final al principio de la lista (vea la función
-get).
-
-    Recuerde que al eliminar un dato, debe mover los elementos que se encuentran
-a la derecha, una casilla hacia la izquierda
-
-*/
-void *pop(ArrayList *l, int i) {
-  if (i > l->size)
-    return NULL;
-  if (i == l->size) {
-    l->data[l->size] = NULL;
-    return NULL;
-  }
-
-  l->data[i] = NULL;
-  int resto = l->size - i;
-  for (int j = 0; j < resto; j++) {
-    l->data[i + j] = l->data[i + j + 1];
-  }
-
-  return l->data[i];
 }
 
 /*Implemente la función void* get(ArrayList * l, int i). Esta función retorna el
