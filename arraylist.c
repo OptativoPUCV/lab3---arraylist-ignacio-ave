@@ -1,6 +1,17 @@
 //CODIGO LABORATORIO N3 IGNACIO ASTORGA. 
 //replit: https://replit.com/join/pfczrqlope-ignacioastorga  (CODIGO SIN COMENTARIOS FINALES)
 
+// descripcion general: el programa consiste en crear un arraylist que es un array de punteros
+// que se puede redimensionar dinamicamente, el arraylist tiene un tamaño y una capacidad
+// la capacidad es la cantidad de elementos que puede contener el arraylist
+// el tamaño es la cantidad de elementos que contiene el arraylist
+// el arraylist tiene 4 funciones principales:
+// append: agrega un elemento al final del arraylist
+// push: agrega un elemento en una posicion especifica del arraylist
+// pop: elimina un elemento del arraylist
+// get: obtiene un elemento del arraylist
+// clean: limpia el arraylist de data
+
 #include "arraylist.h"
 #include <assert.h>
 #include <stdio.h>
