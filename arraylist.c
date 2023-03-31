@@ -152,17 +152,15 @@ int get_size(ArrayList *l) {
 
 */
 void clean(ArrayList *l) {
-  void clean(ArrayList *l) {
     // hacer un free de cada elemento del array y luego del array 
     // y por ultimo hacer un malloc de nuevo
-    for (int i = 0; i < l->size; i++)
-    {
-        free(l->data[i]);
-    }
+  for (int i = 0; i < l->size; i++){
+    free(l->data[i]);
+  }
     // habia una alternativa que me soluciono el problema inicialmente l->data = NULL;
-    l->data = (void **)malloc(sizeof(void *) * 2);
-    l->capacity = 2;
-    l->size = 0;
+  l->data = (void **)malloc(sizeof(void *) * 2);
+  l->capacity = 2;
+  l->size = 0;
     
 
 }
