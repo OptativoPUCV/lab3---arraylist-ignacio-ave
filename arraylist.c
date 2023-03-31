@@ -122,6 +122,8 @@ void clean(ArrayList *l) { // limpiar el array de data
   }
     // habia una alternativa que me soluciono el problema inicialmente l->data = NULL;
   l->data = (void **)malloc(sizeof(void *) * 2); // reservar memoria para el array de punteros
+  if (l->data == NULL) // si no se pudo reservar memoria
+    exit(1);
   l->capacity = 2; 
   l->size = 0;
     
