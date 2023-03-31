@@ -46,6 +46,6 @@ int main( int argc, char *argv[] ){
     printf("  Tamano de la lista: %d\n", get_size(numbers));
 
 
-
+    free(numbers);
     return 0;
 }
