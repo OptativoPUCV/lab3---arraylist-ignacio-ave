@@ -1,3 +1,6 @@
+//CODIGO LABORATORIO N3 IGNACIO ASTORGA. 
+//replit: https://replit.com/join/pfczrqlope-ignacioastorga  (CODIGO SIN COMENTARIOS FINALES)
+
 #include "arraylist.h"
 #include <assert.h>
 #include <stdio.h>
