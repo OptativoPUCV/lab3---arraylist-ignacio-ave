@@ -80,25 +80,29 @@ void push(ArrayList *l, void *data, int i) { // agregar un elemento en una posic
 }
 
 
-void *pop(ArrayList *l, int i) { // eliminar un elemento del array
-  if (i > l->size) // si el indice es mayor al tamaño del array
+void *pop(ArrayList *l, int i) {
+  if (i < 0) // si el indice es negativo
+    i = l->size + i;
+
+  if (i < 0 || i >= l->size) // si el indice esta fuera de los limites del array
     return NULL;
 
-  void *valor_eleminado = l->data[i]; // guardar el valor del elemento a eliminar
+  // guardar el elemento que se va a eliminar
+  void *elemento = l->data[i];
 
-  if (i == l->size) { // si el indice es igual al tamaño del array
-    l->data[l->size] = NULL;
-    l->size--;
-    return valor_eleminado;
+  if (i == l->size - 1) { // si se elimina el último elemento
+    l->data[i] = NULL; // poner el elemento en NULL
+    disminuirsize(l); // disminuir el tamaño del array
+    return elemento; // retornar el elemento eliminado
   }
 
-  l->data[i] = NULL; // eliminar el elemento
-  int resto = l->size - i; // calcular el resto de elementos
-  for (int j = 0; j < resto; j++) { // recorrer el resto de elementos
-    l->data[i + j] = l->data[i + j + 1]; // mover los elementos
+  // mover los elementos
+  for (int j = i; j < l->size - 1; j++) {
+    l->data[j] = l->data[j + 1];
   }
-  l->size--; // disminuir el tamaño del array
-  return valor_eleminado;
+  l->data[l->size - 1] = NULL; // poner el ultimo elemento en NULL
+  disminuirsize(l); // disminuir el tamaño del array
+  return elemento; // retornar el elemento eliminado
 }
 
 
