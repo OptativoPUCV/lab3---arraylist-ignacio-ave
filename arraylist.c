@@ -54,25 +54,29 @@ void append(ArrayList *l, void *data) { // agregar un elemento al final del arra
 }
 
 
-void push(ArrayList *l, void *data, int i) {
-  if (l->size == l->capacity) // si el array esta lleno
-    doblarcapacity(l);
-  if (i > l->size) // si el indice es mayor al tamaño del array
-    return;
-  if (i == l->size) { // si el indice es igual al tamaño del array
-    append(l, data);
-    return;
+void disminuirsize(ArrayList *l){
+  l->size = l->size - 1; 
+}
+void aumentarsize(ArrayList *l){
+  l->size = l->size + 1 ;
+}
+
+
+void push(ArrayList *l, void *data, int i) { // agregar un elemento en una posicion especifica del array
+  if( l->size == l-> capacity){ // si el array esta lleno 
+    doblarcapacity(l); // doblar la capacidad del array
   }
 
-  // si el indice es menor al tamaño del array
-  void *aux1 = NULL;  // variable auxiliar
-  int resto = l->size - i ;
-  for(int k = 0 ; k  < resto ; k++){ // recorrer el array desde el indice hasta el final
-    aux1 = l->data[i+k]; // guardar el valor del elemento en aux1
-    l->data[i+k] = data; // guardar el valor de data en el elemento
-    data = aux1; // guardar el valor de aux1 en data
+  if (i > l->size) { // si el indice es mayor al tamaño del array
+    return ; 
   }
-
+  
+  for( int j = l->size ; j > i ; j--){ // recorrer el array desde el final hasta el indice
+    l->data[j] = l->data[j-1]; // mover los elementos
+  }
+  l->data[i] = data; // agregar el elemento en la posicion especifica
+  aumentarsize(l); // aumentar el tamaño del array
+  
 }
 
 
